@@ -1,14 +1,18 @@
-import Image from "next/image";
+import { SanityDocument } from "next-sanity";
+import { sanityFetch } from "@/sanity/client";
 
-export default function Home() {
+const EVENTS_QUERY = `*[_type == "myBio"]{content}`;
+
+export default async function IndexPage() {
+  const bios = await sanityFetch<SanityDocument[]>({query: EVENTS_QUERY});
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          Hi! My name is Chih-Ho Chou. Chih-Ho is my first name and I also go by Andy. 
-        </div>
-      </div>
-
+    <main className="flex bg-gray-100 min-h-screen flex-col p-24 gap-12">
+      <article>
+        {bios[0].content.map((c: any) => (
+          c.children.map((child: any) => <p>{child.text}</p>)
+        ))}
+      </article>
     </main>
   );
 }
