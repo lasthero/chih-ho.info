@@ -11,10 +11,12 @@
   "dependencies": {
     "@portabletext/react": "^3.0.18",
     "@sanity/image-url": "^1.0.2",
+    "classnames": "^2.5.1",
     "next": "14.2.3",
     "next-sanity": "^9.0.14",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "typeface-roboto": "^1.1.13"
   },
   "devDependencies": {
     "@types/node": "^20",
