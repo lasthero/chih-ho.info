@@ -1,12 +1,14 @@
-// components/Navigation.js
+'use client'
 import Link from 'next/link';
-import { SanityDocument } from "next-sanity";
-import { sanityFetch } from "@/sanity/client";
+import { usePathname } from 'next/navigation';
 
-const NAV_MENU_QUERY = `*[_type == "navigationList"] {navArray[]->}`;
+type navArrayItem = {
+    title: string,
+    url: string,
+}
 
-const Navigation = async () => {
-  const navMenu = await sanityFetch<SanityDocument[]>({query: NAV_MENU_QUERY});
+const Navigation = async ({ navArray }: { navArray: navArrayItem[] }) => {
+  const pathname = usePathname();
 
   return (
     <nav className="bg-sky-600 py-4">
@@ -17,10 +19,8 @@ const Navigation = async () => {
           </div>
           <div className="hidden md:block">
             <ul className="flex space-x-4">
-            {navMenu[0].navArray.map((item: any) => 
-            <li>
-                <Link className="text-white hover:text-gray-300" href={item.url}>{item.title}</Link>
-            </li>
+            {navArray.map((item: any) => 
+                <NavItem href={item.url} pathname={pathname}>{item.title}</NavItem> 
             )}
             </ul>
           </div>
@@ -29,5 +29,15 @@ const Navigation = async () => {
     </nav>
   );
 };
-
+const NavItem = ({ href, pathname, children }: any) => {
+    const isActive = pathname === href;
+    const activeClassName = isActive ? 'font-bold' : '';
+  
+    return (
+      <li>
+        <Link className={`text-white hover:text-gray-300 ${activeClassName}`} href={href}>{children}</Link>
+      </li>
+    );
+  };
+  
 export default Navigation;
