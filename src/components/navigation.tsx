@@ -11,7 +11,7 @@ const Navigation = async ({ navArray }: { navArray: navArrayItem[] }) => {
   const pathname = usePathname();
 
   return (
-    <nav className="bg-sky-600 py-4">
+    <nav className="h-16 bg-sky-600 py-4">
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center">
           <div className="flex-shrink-0">

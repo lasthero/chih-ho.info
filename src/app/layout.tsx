@@ -1,3 +1,4 @@
+import Footer from '../components/footer'
 import type { Metadata } from "next";
 import Navigation from '../components/navigation';
 import { Inter } from "next/font/google";
@@ -22,11 +23,11 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body>
+      <body className="h-screen flex flex-col" >
         {/* Layout UI */}
         <Navigation navArray={navMenu[0].navArray}/>
-        <main>{children}</main>
-        <footer>copyright</footer>
+        <main className="flex-1 bg-gray-100 p-10 gap-12 overflow-y-auto" >{children}</main>
+        <Footer />
       </body>
     </html>
   );
