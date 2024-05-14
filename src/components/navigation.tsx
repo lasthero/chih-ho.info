@@ -7,7 +7,7 @@ type navArrayItem = {
     url: string,
 }
 
-const Navigation = async ({ navArray }: { navArray: navArrayItem[] }) => {
+const Navigation = ({ navArray }: { navArray: navArrayItem[] }) => {
   const pathname = usePathname();
 
   return (

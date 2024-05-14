@@ -20,7 +20,5 @@ export default async function IndexPage() {
         <PDFViewer src="Resume_Chih-Ho_Chou.pdf" />
         </div>
       </article>
-      
-
   );
 }
