@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 type navArrayItem = {
-    title: string,
-    url: string,
+  title: string,
+  url: string,
 }
 
 const Navigation = ({ navArray }: { navArray: navArrayItem[] }) => {
@@ -19,9 +19,9 @@ const Navigation = ({ navArray }: { navArray: navArrayItem[] }) => {
           </div>
           <div className="hidden md:block">
             <ul className="flex space-x-4">
-            {navArray.map((item: any) => 
-                <NavItem href={item.url} pathname={pathname}>{item.title}</NavItem> 
-            )}
+              {navArray.map((item: any, ind: number) =>
+                <NavItem href={item.url} pathname={pathname} key={`navItem_${ind}`}>{item.title}</NavItem>
+              )}
             </ul>
           </div>
         </div>
@@ -29,15 +29,15 @@ const Navigation = ({ navArray }: { navArray: navArrayItem[] }) => {
     </nav>
   );
 };
-const NavItem = ({ href, pathname, children }: any) => {
-    const isActive = pathname === href;
-    const activeClassName = isActive ? 'font-bold' : '';
-  
-    return (
-      <li>
-        <Link className={`text-white hover:text-gray-300 ${activeClassName}`} href={href}>{children}</Link>
-      </li>
-    );
-  };
-  
+const NavItem = ({ href, pathname, key, children }: any) => {
+  const isActive = pathname === href;
+  const activeClassName = isActive ? 'font-bold' : '';
+
+  return (
+    <li key={key}>
+      <Link className={`text-white hover:text-gray-300 ${activeClassName}`} href={href}>{children}</Link>
+    </li>
+  );
+};
+
 export default Navigation;

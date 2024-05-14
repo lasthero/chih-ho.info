@@ -34,7 +34,7 @@ export default async function IndexPage() {
       <h1>Here are some technical blogs/posts/articles for my daily reads:</h1>
       <br />
       <ul>
-      {stories && stories.map((item: any) => <li><Link className="underline hover:text-gray-300" href={item.url} target="_blank">{item.title} by {item.by}</Link></li>)}
+      {stories && stories.map((item: any, ind: number) => <li key={`feed_${ind}`}><Link className="underline hover:text-gray-300" href={item.url} target="_blank">{item.title} by {item.by}</Link></li>)}
       </ul>
     </>
     );

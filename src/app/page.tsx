@@ -11,7 +11,7 @@ export default async function IndexPage() {
 
       <article className="p-4">
         {bios[0].content.map((c: any) => (
-          c.children.map((child: any) => <p>{child.text}</p>)
+          c.children.map((child: any, ind: number) => <p key={`bio_${ind}`}>{child.text}</p>)
         ))}
         <div>
         <h1>
