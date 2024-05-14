@@ -17,8 +17,8 @@ const Navigation = ({ navArray }: { navArray: navArrayItem[] }) => {
           <div className="flex-shrink-0">
             <Link className="text-white text-2xl font-bold" href="/">Chih-Ho.info</Link>
           </div>
-          <div className="hidden md:block">
-            <ul className="flex space-x-4">
+          <div>
+            <ul className="flex sm:space-x-1 md:space-x-4">
               {navArray.map((item: any, ind: number) =>
                 <NavItem href={item.url} pathname={pathname} key={`navItem_${ind}`}>{item.title}</NavItem>
               )}
