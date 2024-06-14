@@ -5,6 +5,7 @@ async function getData() {
 
     try {
         const response = await fetch(mediumRssUrl);
+        console.log('Response status:', response.status);
         const data = await response.json();
         // console.log(data.items[0]);
         const articles = data.items.slice(0, 5).map((item: any) => ({
@@ -30,7 +31,7 @@ async function getData() {
 
 export default async function IndexPage() {
   const data = await getData();
-//   console.log('data', data.props.articles);
+  console.log('data', data.props.articles);
   return (
     <>
         <h1>I tried to start writing some technical articles. Here are my published articles. More to come!</h1>
