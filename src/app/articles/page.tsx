@@ -1,9 +1,11 @@
 import Link from "next/link";
 async function getData() {
     const username = 'chihho.chou';
-    const mediumRssUrl = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${username}`;
+    const mediumRssUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURI(`https://medium.com/feed/@${username}`)}`;
+    // const mediumRssUrl = `https://medium.com/feed/@${username}`;
 
     try {
+      console.log('fetching: ', mediumRssUrl);
         const response = await fetch(mediumRssUrl);
         console.log('Response status:', response.status);
         const data = await response.json();
@@ -17,7 +19,6 @@ async function getData() {
           props: {
             articles,
           },
-          revalidate: 60, // Revalidate every 60 seconds (1 minute)
         };
       } catch (error) {
         console.error('Error fetching Medium articles:', error);
@@ -31,7 +32,7 @@ async function getData() {
 
 export default async function IndexPage() {
   const data = await getData();
-  console.log('data', data.props.articles);
+  // console.log('data', data.props.articles);
   return (
     <>
         <h1>I tried to start writing some technical articles. Here are my published articles. More to come!</h1>
